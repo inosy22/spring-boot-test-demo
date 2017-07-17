@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>spring-boot-test-demo</title>
+</head>
+<body>
+    <!-- UserFormオブジェクトを利用して、user登録 -->
+    <div>
+        <h3>AddUserForm</h3>
+        <form th:action="@{/}" method="post" th:object="${userForm}">
+            <label>name</label>
+            <input type="text" th:field="*{name}"/>
+            <input type="submit" name="submit" value="add"/>
+        </form>
+    </div>
+    
+    <!-- DBのuserが1レコード以上であればuser一覧を表示 -->
+    <div th:if="${#lists.size(users)}>0">
+        <h3>UserListTable</h3>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">0</td>
+                <td th:text="${user.name}">null</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
