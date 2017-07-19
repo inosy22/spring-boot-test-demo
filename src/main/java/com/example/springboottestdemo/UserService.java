@@ -14,11 +14,12 @@ public class UserService {
         return userMapper.findAll();
     }
     
-    List<User> findByName(String name) {
-        return userMapper.findByName(name);
+    void addUser(String name) {
+        Integer groupId = this.getGroupFromName(name);
+        userMapper.insert(name, groupId);
     }
     
-    long insert(String name) {
-        return userMapper.insert(name);
+    Integer getGroupFromName(String name) {
+        return (name.length() % 2 == 0) ? 2 : 1;
     }
 }

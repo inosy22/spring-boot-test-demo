@@ -22,16 +22,20 @@ public class UserController {
     public String showUserList(Model model) {
         model.addAttribute("users", userService.findAll());
         model.addAttribute("userForm", new UserForm());
-        return "index";
+        return "user";
     }
     
     // User生成
     @PostMapping("/")
     public String addUser(Model model, @Validated UserForm userForm, BindingResult bindingResult) {
-        // バリデーションエラーがなければ登録
-        if (!bindingResult.hasErrors()) {
-            userService.insert(userForm.getName());
+        // バリデーションエラーがあったとき
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("users", userService.findAll());
+            model.addAttribute("userForm", userForm);
+            return "user";
         }
+        // 問題がなければ登録
+        userService.addUser(userForm.getName());
         return "redirect:/";
     }
     
@@ -39,8 +43,8 @@ public class UserController {
     static class UserForm {
         // 1文字以上20文字以下の英数字
         @NotNull
-        @Size(min = 1, max = 20)
-        @Pattern(regexp = "[a-zA-Z0-9]*")
+        @Size(min = 1, max = 20, message = "1文字以上,20文字以下で入力してください")
+        @Pattern(regexp = "[a-zA-Z0-9]*", message = "半角英数字のみで入力してください")
         private String name;
         
         public void setName(String name) {

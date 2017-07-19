@@ -10,8 +10,9 @@
         <h3>AddUserForm</h3>
         <form th:action="@{/}" method="post" th:object="${userForm}">
             <label>name</label>
-            <input type="text" th:field="*{name}"/>
+            <input type="text" name="name" th:field="*{name}"/>
             <input type="submit" name="submit" value="add"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;">error</div>
         </form>
     </div>
     
@@ -22,10 +23,12 @@
             <tr>
                 <th>ID</th>
                 <th>name</th>
+                <th>group_id</th>
             </tr>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}">0</td>
                 <td th:text="${user.name}">null</td>
+                <td th:text="${user.groupId}">-1</td>
             </tr>
         </table>
     </div>

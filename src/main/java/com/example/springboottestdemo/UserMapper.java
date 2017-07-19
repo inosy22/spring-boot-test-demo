@@ -9,12 +9,9 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 interface UserMapper {
-    @Select("SELECT id, name FROM users")
+    @Select("SELECT id, name, group_id FROM users")
     List<User> findAll();
     
-    @Select("SELECT id, name FROM users WHERE name = #{name}")
-    List<User> findByName(@Param("name") String name);
-    
-    @Insert("INSERT INTO users (name) VALUES (#{name})")
-    long insert(@Param("name") String name);
+    @Insert("INSERT INTO users (name, group_id) VALUES (#{name}, #{groupId})")
+    long insert(@Param("name") String name, @Param("groupId") Integer groupId);
 }

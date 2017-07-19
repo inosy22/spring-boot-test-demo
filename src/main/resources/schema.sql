@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS users (
-    id int PRIMARY KEY AUTO_INCREMENT,
-    name varchar(30)
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    group_id INTEGER NOT NULL DEFAULT 0
 ); 
