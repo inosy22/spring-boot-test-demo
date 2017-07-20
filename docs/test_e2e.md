@@ -64,7 +64,7 @@ public class UserControllerTests {
 
 ## 5.3 ユーザー登録が成功した時のテスト
 
-```
+```java
 @Test
 @Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
 public void ユーザー登録成功() throws Exception {
@@ -99,7 +99,7 @@ public void ユーザー登録成功() throws Exception {
 
 ## 5.4 ユーザー登録がバリデーションで失敗した時のテスト
 
-```
+```java
 @Test
 @Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
 public void ユーザー登録失敗() throws Exception {

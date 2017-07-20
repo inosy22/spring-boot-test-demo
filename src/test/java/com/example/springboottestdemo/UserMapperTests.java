@@ -14,14 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
 @ActiveProfiles("test")
+@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
 public class UserMapperTests {
     @Autowired
     UserMapper userMapper;
     
     @Test
-    public void insertUsersTableTest() throws Exception {
+    public void insertUsersCountTest() throws Exception {
         userMapper.insert("hoge", 1);
         userMapper.insert("fuga", 2);
         List<User> users = userMapper.findAll();

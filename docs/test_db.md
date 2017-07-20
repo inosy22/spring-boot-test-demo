@@ -42,7 +42,7 @@ public class UserMapperTests {
     UserMapper userMapper;
     
     @Test
-    public void insertUsersCount() throws Exception {
+    public void insertUsersCountTest() throws Exception {
         userMapper.insert("hoge", 1);
         userMapper.insert("fuga", 2);
         List<User> users = userMapper.findAll();
