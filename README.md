@@ -4,20 +4,23 @@ SpringBootで作成されたwebアプリケーションに対してのテスト�
 
 [SpringBootTest入門](https://www.slideshare.net/techblogyahoo/springboottest)について理解した上で、実践的な部分を取り扱う。
 
-### [0.セットアップ](docs/setup.md)
- - このプロジェクトセットアップした際のメモなど
+> ### [0.セットアップ](docs/setup.md)
+>  - このプロジェクトセットアップした際のメモなど、見る必要なし
 
-### [1.アプリケーションの準備](docs/ready.md)
+### [1. アプリケーションの準備](docs/ready.md)
  - アプリケーションをローカルで立ち上げるまで
 
-### [2.アプリケーション仕様](docs/system.md)
+### [2. アプリケーション仕様](docs/system.md)
  - アプリケーションや環境などの説明
  
-### [3.単体テスト](docs/test_unit.md)
+### [3. 単体テスト](docs/test_unit.md)
  - Serviceクラスや一般的なクラスメソッドの単体テスト
  
-### [4.DB処理テスト](docs/test_db.md)
+### [4. DB処理テスト](docs/test_db.md)
  - マッパー・リポジトリクラスなどのメソッドのテスト
  
-### [5.E2E(EndToEnd)テスト](docs/test_e2e.md)
+### [5. E2E(EndToEnd)テスト](docs/test_e2e.md)
  - コントローラーとHTMLのためのE2E(EndToEnd)テスト
+
+
+[answerブランチ](https://github.com/inosy22/spring-boot-test-demo/tree/answer/src/test/java/com/example/springboottestdemo)にテストコード記述例があります。
