@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService userService; // UserServiceをDIコンテナから利用
     
     // User生成form&一覧表示
     @GetMapping("/")
@@ -34,7 +34,7 @@ public class UserController {
             model.addAttribute("userForm", userForm);
             return "user";
         }
-        // 問題がなければ登録
+        // 問題がなければ登録してリダイレクト
         userService.addUser(userForm.getName());
         return "redirect:/";
     }
