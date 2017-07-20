@@ -10,7 +10,7 @@ public class UserServiceTests {
 }
 ```
 
-## テスト用アノテーションを追加する
+## 3.1 テスト用アノテーションを追加する
 
 ```diff
 +@RunWith(SpringRunner.class)
@@ -45,7 +45,7 @@ public class UserServiceTests {
 > ```
 
 
-## グループIDを生成するメソッドのテストを作ってみる
+## 3.2 グループIDを生成するメソッドのテストを作ってみる
 
 `@Test` アノテーションをつけることで、テストケースメソッドと認識されてテスト実行時に実行されるので、以下のメソッドをクラスに追加する。
 
@@ -60,7 +60,7 @@ public void 偶数文字数のグループID生成テスト() throws Exception {
 ```
 
 
-## JUnitTestの実行
+## 3.3 JUnitTestの実行
 
 プロジェクトを右クリック -> 「Run As」->「JUnit Test」でテスト実行
 
@@ -69,3 +69,56 @@ public void 偶数文字数のグループID生成テスト() throws Exception {
 実行して成功するとこんな感じに表記されるはず
 
 <img width="304" alt="2017-07-20 19 43 01" src="https://user-images.githubusercontent.com/10849664/28413849-0d4f7dfa-6d84-11e7-90c3-62a92cb6e1a1.png">
+
+
+
+## 3.4 DIコンテナのインスタンスを利用しているメソッドのテスト
+
+userServiceのfindAllメソッドは、userMapperのインスタンスをDIコンテナから利用している。
+
+#### 3.4.1 ダメな例
+
+以下のuserServiceクラスは、独自でインスタンス生成したため、DIコンテナのインスタンスを利用できずエラーとなる。
+
+```
+@Test
+    public void メソッド単体テストDIあり失敗() throws Exception {
+    UserService userService = new UserService();
+    List<User> users = userService.findAll();
+    assertThat(users.size()).isEqualTo(0);
+}
+```
+
+実行してみた
+
+<img width="293" alt="2017-07-20 19 57 50" src="https://user-images.githubusercontent.com/10849664/28414520-f8509a8a-6d86-11e7-8e80-d6db4b74a1ee.png">
+
+#### 3.4.2 良い例
+
+`@MockBean` 指定で、Mockクラスを利用してDI解決をしたクラスを生成する。
+
+Mockクラスのメソッドはデフォルトで戻り値に合わせた処理になる。 (詳しくは公式リファレンスで)
+
+```
+@MockBean
+private UserService mockUserService;
+
+@Test
+public void メソッド単体テストMockBean() throws Exception {
+    List<User> users = this.mockUserService.findAll(); // 空のリストが返るはず
+    assertThat(users.size()).isEqualTo(0);
+}
+```
+
+実行してみた
+
+<img width="292" alt="2017-07-20 20 10 46" src="https://user-images.githubusercontent.com/10849664/28414634-8e8ddbca-6d87-11e7-8bd8-83c85dbb7f15.png">
+
+> `@MockBean` は、テスト用モッククラス生成ライブラリのMockitoを利用している。
+> 今回の場合は、Mockitoをそのまま使った時の以下の意味と同じである。
+> ```
+> @InjectMocks
+> UserService mockUserService; // DIされて利用するオブジェクト
+> @Mock
+> UserMapper userMapper; // DIされるMockオブジェクト
+> ``` 
