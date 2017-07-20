@@ -8,16 +8,16 @@
     <!-- UserFormオブジェクトを利用して、user登録 -->
     <div>
         <h3>AddUserForm</h3>
-        <form th:action="@{/}" method="post" th:object="${userForm}">
+        <form th:action="@{/}" name="user-form" method="post" th:object="${userForm}">
             <label>name</label>
             <input type="text" name="name" th:field="*{name}"/>
             <input type="submit" name="submit" value="add"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;">error</div>
+            <div name="name-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;">error</div>
         </form>
     </div>
     
     <!-- DBのuserが1レコード以上であればuser一覧を表示 -->
-    <div th:if="${#lists.size(users)}>0">
+    <div id="user-list-area" th:if="${#lists.size(users)}>0">
         <h3>UserListTable</h3>
         <table border="1">
             <tr>
