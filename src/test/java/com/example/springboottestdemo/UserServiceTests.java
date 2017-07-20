@@ -24,7 +24,7 @@ public class UserServiceTests {
         assertThat(userService.getGroupFromName(name)).isEqualTo(groupId);
     }
     
-    //@Test
+    // @Test
     public void メソッド単体テストDIあり失敗() throws Exception {
         UserService userService = new UserService();
         List<User> users = userService.findAll();

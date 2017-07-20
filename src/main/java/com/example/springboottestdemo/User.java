@@ -1,7 +1,7 @@
 package com.example.springboottestdemo;
 
 /**
- * Usersテーブル用構造体
+ * usersテーブル用構造体
  * lombok使うと楽に宣言できるが今回は利用しない
  */
 public class User {

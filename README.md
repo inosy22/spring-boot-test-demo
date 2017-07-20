@@ -9,12 +9,15 @@ SpringBootで作成されたwebアプリケーションに対してのテスト�
 
 ### [1.アプリケーションの準備](docs/ready.md)
  - アプリケーションをローカルで立ち上げるまで
+
+### [2.アプリケーション仕様](docs/system.md)
+ - アプリケーションや環境などの説明
  
-### [2.単体テスト](docs/test_unit.md)
+### [3.単体テスト](docs/test_unit.md)
  - Serviceクラスや一般的なクラスメソッドの単体テスト
  
-### [3.DB処理テスト](docs/test_db.md)
+### [4.DB処理テスト](docs/test_db.md)
  - マッパー・リポジトリクラスなどのメソッドのテスト
  
-### [4.E2E(EndToEnd)テスト](docs/test_e2e.md)
+### [5.E2E(EndToEnd)テスト](docs/test_e2e.md)
  - コントローラーとHTMLのためのE2E(EndToEnd)テスト
