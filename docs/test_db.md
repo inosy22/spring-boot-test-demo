@@ -66,10 +66,10 @@ UserMapper userMapper;
 
 @Test
 public void insertUsersCountTest() throws Exception {
-    userMapper.insert("hoge", 1);
-    userMapper.insert("fuga", 2);
-    List<User> users = userMapper.findAll();
-    assertThat(users.size()).isEqualTo(2);
+    userMapper.insert("hoge", 1); // 1件目インサート
+    userMapper.insert("fuga", 2); // 2件目インサート
+    List<User> users = userMapper.findAll(); // 2件返って来るはず
+    assertThat(users.size()).isEqualTo(2); // 2件かどうかチェック
 }
 ```
 
