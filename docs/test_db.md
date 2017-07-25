@@ -14,21 +14,44 @@ public class UserMapperTests {
 
 UserServiceTestsと同様の3行に加えて、`@Sql` アノテーションを利用して、クラス内のテストケース実行前に事前実行するsqlを指定する。
 
-```diff
-+@RunWith(SpringRunner.class)
-+@SpringBootTest
-+@ActiveProfiles("test")
-+@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
- public class UserMapperTests {
- 
- }
+```java
+// ここから
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ActiveProfiles("test") // テスト用設定ファイルの読み込みを宣言
+@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
+// ここまでコピペ
+public class UserMapperTests {
+
+}
 ```
 
-今回は `src/test/resources/delete-test-data.sql` に記述されているとおり、事前にテーブルデータを全部削除するスクリプトになっている。
+#### `@ActiveProfiles("test")` について、
+
+
+`src/test/resources/application-test.properties` を読み込むようにしている。
+
+今回は用意してあり、本番との差分は以下のとおり。
+
+```diff
+　spring.datasource.driver-class-name=org.h2.Driver
+-spring.datasource.url=jdbc:h2:./.data/appdb
++spring.datasource.url=jdbc:h2:./.data/testdb
+　spring.datasource.username=root
+　spring.datasource.password=
+```
+
+
+#### `@Sql("classpath:/delete-test-data.sql")` について
+
+`src/test/resources/delete-test-data.sql` に記述されているとおり、事前にテーブルデータを全部削除するスクリプトになっている。
 
 ```sql
 DELETE FROM users;
 ```
+
+これで、このクラスのテストが実行される前にusersテーブルにレコードがない状態でテストすることを保証できる。
+
 
 ## 4.2 テスト用DBにデータ登録&取得を行うテスト実装
 

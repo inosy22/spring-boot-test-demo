@@ -13,8 +13,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
 public class UserServiceTests {
+    @Test
+    public void テストが動くことをテスト() throws Exception {
+        Integer actual = 1 + 1; // 実際の計算値
+        Integer expected = 2; // 計算した期待値
+        assertThat(actual).isEqualTo(expected); // 実際の計算値と期待値があってるかチェック
+    }
     
     @Test
     public void 偶数文字のグループID生成テスト() throws Exception {
