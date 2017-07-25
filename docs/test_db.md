@@ -28,29 +28,28 @@ public class UserMapperTests {
 
 #### `@ActiveProfiles("test")` について、
 
-
-`src/test/resources/application-test.properties` を読み込むようにしている。
-
-今回は用意してあり、本番との差分は以下のとおり。
-
-```diff
-　spring.datasource.driver-class-name=org.h2.Driver
--spring.datasource.url=jdbc:h2:./.data/appdb
-+spring.datasource.url=jdbc:h2:./.data/testdb
-　spring.datasource.username=root
-　spring.datasource.password=
-```
+> `src/test/resources/application-test.properties` を読み込むようにしている。
+> 
+> 今回は用意してあり、本番との差分は以下のとおり。
+> 
+> ```diff
+>　spring.datasource.driver-class-name=org.h2.Driver
+> -spring.datasource.url=jdbc:h2:./.data/appdb
+> +spring.datasource.url=jdbc:h2:./.data/testdb
+>　spring.datasource.username=root
+>　spring.datasource.password=
+>```
 
 
 #### `@Sql("classpath:/delete-test-data.sql")` について
 
-`src/test/resources/delete-test-data.sql` に記述されているとおり、事前にテーブルデータを全部削除するスクリプトになっている。
-
-```sql
-DELETE FROM users;
-```
-
-これで、このクラスのテストが実行される前にusersテーブルにレコードがない状態でテストすることを保証できる。
+> `src/test/resources/delete-test-data.sql` に記述されているとおり、事前にテーブルデータを全部削除するスクリプトになっている。
+> 
+> ```sql
+> DELETE FROM users;
+> ```
+> 
+> これで、このクラスのテストが実行される前にusersテーブルにレコードがない状態でテストすることを保証できる。
 
 
 ## 4.2 テスト用DBにデータ登録&取得を行うテスト実装
