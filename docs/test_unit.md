@@ -1,7 +1,8 @@
 # 3.単体テスト
 
 UserServiceクラスのメソッドについて、単体テストを行う。
-準備してある空の以下のクラスを開く (importと空のクラスだけ準備してあります)
+準備してある空の以下のクラスを開く 。(importと空のクラスだけ準備してあります)
+
 `src/test/java/com/example/springboottestdemo/UserServiceTests.java`
 
 <img width="302" alt="2017-07-25 22 02 44" src="https://user-images.githubusercontent.com/10849664/28573271-1f2ff4fa-7185-11e7-91dc-e81639c0ea5e.png">
@@ -51,6 +52,13 @@ public void テストが動くことをテスト() throws Exception {
 実行して成功するとこんな感じに表記されるはず
 
 <img width="407" alt="2017-07-25 22 28 57" src="https://user-images.githubusercontent.com/10849664/28574368-bb4e7fde-7188-11e7-9751-a8df6f40f691.png">
+
+
+# ↑ここまででテスト実装できた！！！終わり！！！簡単！！！
+
+...
+
+さすがにもう少しやります^^
 
 
 ## 3.4 グループIDを生成するメソッドのテストを作ってみる
@@ -124,7 +132,7 @@ public void メソッド単体テストMockBean() throws Exception {
 実行してみた
 
 <img width="292" alt="2017-07-20 20 10 46" src="https://user-images.githubusercontent.com/10849664/28414634-8e8ddbca-6d87-11e7-8bd8-83c85dbb7f15.png">
-> 
+
 > `@MockBean` は、SpringBootの機能で利用できるアノテーションですが、テスト用モッククラス生成ライブラリのMockitoを利用している。
 > 今回の場合は、Mockitoをそのまま使った時の以下の意味と同じである。
 > ```
