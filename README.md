@@ -2,7 +2,9 @@
 
 SpringBootで作成されたwebアプリケーションに対してのテストのサンプル
 
-[SpringBootTest入門](https://www.slideshare.net/techblogyahoo/springboottest)について理解した上で、実践的な部分を取り扱う。
+ - [SpringBootTest入門](https://www.slideshare.net/techblogyahoo/springboottest)について、実際に実装して試してみる。
+ - 45分程度のハンズオン向け資料で、UnitTestを実行できること(3章まで)をゴールとする。
+ - 4,5章は余裕がある人の発展的内容。
 
 > ### [0.セットアップ](docs/setup.md)
 >  - このプロジェクトセットアップした際のメモなど、見る必要なし
@@ -16,10 +18,10 @@ SpringBootで作成されたwebアプリケーションに対してのテスト�
 ### [3. 単体テスト](docs/test_unit.md)
  - Serviceクラスや一般的なクラスメソッドの単体テスト
  
-### [4. DB処理テスト](docs/test_db.md)
+### [4. DB処理テスト](docs/test_db.md) (余裕があれば挑戦)
  - マッパー・リポジトリクラスなどのメソッドのテスト
  
-### [5. E2E(EndToEnd)テスト](docs/test_e2e.md)
+### [5. E2E(EndToEnd)テスト](docs/test_e2e.md) (余裕があれば挑戦)
  - コントローラーとHTMLのためのE2E(EndToEnd)テスト
 
 

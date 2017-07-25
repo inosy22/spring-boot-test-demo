@@ -4,6 +4,7 @@
 テスト用にH2という高速なデータベースを利用する。
 
 #### H2の利用設定
+
 `src/main/resources/application.properties` に設定を記述する。
 
 ```
@@ -13,7 +14,8 @@ spring.datasource.username=root
 spring.datasource.password=
 ```
 
-`.data/appdb` にDBファイルを生成する。
+今回は、ファイルシステムエンジンを利用して、`.data/appdb` というファイルにDBファイルを生成する。
+
 
 #### テーブルの生成
 `src/main/resources/` 内に、`schema.sql` というファイルを作ると起動時に読み込まれる。
