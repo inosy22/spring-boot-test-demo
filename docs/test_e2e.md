@@ -2,6 +2,7 @@
 
 UserControllerとその結果取得できるHTMLに対して、E2E (EndToEnd) テストを行う。
 準備してある空のファイルの以下のクラスを開く
+
 `src/test/java/com/example/springboottestdemo/UserControllerTests.java`
 
 ```java
@@ -19,10 +20,12 @@ Htmlベースでテストを行うことができるライブラリである。
 E2Eテストで利用するwebサーバーのポート番号の競合が発生しないように空いているランダムなポート番号を指定する。
 
 ```diff
-+@RunWith(SpringRunner.class)
-+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // 空いてるポートをランダムに指定
-+@ActiveProfiles("test")
-+@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
+// ここから
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // 空いてるポートをランダムに指定
+@ActiveProfiles("test")
+@Sql("classpath:/delete-test-data.sql") // テーブルのデータを事前削除するスクリプト
+// ここまでコピペして追加
 public class UserControllerTests {
 
 }
@@ -32,7 +35,8 @@ public class UserControllerTests {
 
 ```java
 public class UserControllerTests {
-    // webサーバーのポートを取得して、プロパティにセット
+ /* ここから */
+    // webサーバーのポートを取得して、プロパティにセット
     @LocalServerPort 
     int port;
     
@@ -57,12 +61,15 @@ public class UserControllerTests {
     // pathを元に、HtmlPageクラスを取得する
     private HtmlPage getHtmlPage(String path) throws FailingHttpStatusCodeException, MalformedURLException, IOException {
         return webClient.getPage(this.getUrl(path));
-    }
+    }
+/* ここまでコピペして追加 */
 }
 ```
 
 
 ## 5.3 ユーザー登録が成功した時のテスト
+
+以下のメソッドを追加
 
 ```java
 @Test
@@ -98,6 +105,8 @@ public void ユーザー登録成功() throws Exception {
 
 
 ## 5.4 ユーザー登録がバリデーションで失敗した時のテスト
+
+以下のメソッドを追加
 
 ```java
 @Test
