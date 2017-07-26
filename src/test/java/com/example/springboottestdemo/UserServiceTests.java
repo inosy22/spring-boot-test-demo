@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -38,17 +39,20 @@ public class UserServiceTests {
     
     // Mocitoを使って素直に書くと
     // @InjectMocks
-    // UserService mockUserService; // DIされて利用するMackオブジェクト
+    // UserService userService; // DIされて利用するMackオブジェクト
     // @Mock
     // UserMapper userMapper; // DIされるMockオブジェクト
     
-    // SpringBootなら簡単に書ける
+    // SpringBootでの書き方
+    @Autowired
+    UserService userService;
+    
     @MockBean
-    UserService mockUserService;
+    UserMapper userMapper;
     
     @Test
     public void メソッド単体テストMockBean() throws Exception {
-        List<User> users = this.mockUserService.findAll();
+        List<User> users = this.userService.findAll();
         assertThat(users.size()).isEqualTo(0);
     }
 }
