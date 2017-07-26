@@ -121,12 +121,15 @@ Mockクラスのメソッドはデフォルトで戻り値に合わせた空の�
 今回の `List<User>` は空のList(0件)が返って来るような処理になる。
 
 ```java
+@Autowired
+UserService userService;
+
 @MockBean
-UserService mockUserService;
+UserMapper userMapper;
 
 @Test
 public void メソッド単体テストMockBean() throws Exception {
-    List<User> users = this.mockUserService.findAll(); // 空のリストが返るはず
+    List<User> users = this.userService.findAll(); // 空のリストが返るはず
     assertThat(users.size()).isEqualTo(0);
 }
 ```
