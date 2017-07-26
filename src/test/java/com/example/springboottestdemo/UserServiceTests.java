@@ -39,7 +39,7 @@ public class UserServiceTests {
     
     // Mocitoを使って素直に書くと
     // @InjectMocks
-    // UserService userService; // DIされて利用するMackオブジェクト
+    // UserService mockUserService; // DIされて利用するMackオブジェクト
     // @Mock
     // UserMapper userMapper; // DIされるMockオブジェクト
     
