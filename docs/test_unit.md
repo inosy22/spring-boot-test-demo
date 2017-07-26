@@ -122,7 +122,7 @@ Mockクラスのメソッドはデフォルトで戻り値に合わせた空の�
 
 ```
 @MockBean
-private UserService mockUserService;
+UserService mockUserService;
 
 @Test
 public void メソッド単体テストMockBean() throws Exception {
