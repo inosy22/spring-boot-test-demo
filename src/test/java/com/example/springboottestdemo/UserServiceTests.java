@@ -44,7 +44,7 @@ public class UserServiceTests {
     
     // SpringBootなら簡単に書ける
     @MockBean
-    private UserService mockUserService;
+    UserService mockUserService;
     
     @Test
     public void メソッド単体テストMockBean() throws Exception {
