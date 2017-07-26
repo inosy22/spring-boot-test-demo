@@ -1,6 +1,17 @@
 # 1.アプリケーションの準備
 
-## STSにプロジェクトのimportをする
+## 1.1 プロジェクトのダウンロード
+
+本リポジトリを `git clone` もしくはzipで自分のPCの好きな場所にダウンロード
+
+`git clone` の場合
+
+```bash
+$ git clone https://github.com/inosy22/spring-boot-test-demo.git
+```
+
+
+## 1.2 STSにプロジェクトのimportをする
 <img width="500" alt="2017-07-20 17 59 53" src="https://user-images.githubusercontent.com/10849664/28409732-72b25c70-6d76-11e7-9bd0-189ad1c76ece.png">
 
 <img width="500" alt="2017-07-20 18 00 35" src="https://user-images.githubusercontent.com/10849664/28409735-75f59046-6d76-11e7-9e4c-0dab1a68d64f.png">
@@ -10,13 +21,13 @@
 mavenのパッケージインストールが自動で走るので、少し時間がかかる可能性がある。
 
 
-## アプリケーションをローカルで実行する
+## 1.3 アプリケーションをローカルで実行する
 プロジェクトを右クリックで「Run As」->「SpringBootApp」
 
 <img width="284" alt="2017-07-20 18 04 58" src="https://user-images.githubusercontent.com/10849664/28409830-c19239f0-6d76-11e7-90ed-5618a3779770.png">
 
 
-## 確認
+## 1.4 確認
 http://localhost:8080
 
 以下のようなformが出ればOK
