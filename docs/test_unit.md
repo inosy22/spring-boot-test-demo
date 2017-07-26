@@ -114,22 +114,26 @@ public void メソッド単体テストDIあり失敗() throws Exception {
 
 #### 3.5.2 良い例
 
-`@MockBean` 指定で、Mockクラスを利用してDI解決をしたクラスを生成する。
+`@Autowired` でDIコンテナを利用して、UserServiceクラスを生成する。
+
+`@MockBean` 指定で、DIコンテナの指定のクラスをMock化する。
 
 Mockクラスのメソッドはデフォルトで戻り値に合わせた空のような処理になる。 (詳しくは公式リファレンスで)
 
 今回の `List<User>` は空のList(0件)が返って来るような処理になる。
 
+(Mock化しないと、実際のDB接続処理が入ってしまうため面倒なことになる
+
 ```java
 @Autowired
-UserService userService;
+UserService mockUserService;
 
 @MockBean
-UserMapper userMapper;
+UserMapper userMapper; // UserMapperをMockにする
 
 @Test
 public void メソッド単体テストMockBean() throws Exception {
-    List<User> users = this.userService.findAll(); // 空のリストが返るはず
+    List<User> users = this.mockUserService.findAll(); // 空のリストが返るはず
     assertThat(users.size()).isEqualTo(0);
 }
 ```
