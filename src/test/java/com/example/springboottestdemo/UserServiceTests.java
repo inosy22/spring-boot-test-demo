@@ -45,14 +45,14 @@ public class UserServiceTests {
     
     // SpringBootでの書き方
     @Autowired
-    UserService userService;
+    UserService mockUserService;
     
     @MockBean
     UserMapper userMapper;
     
     @Test
     public void メソッド単体テストMockBean() throws Exception {
-        List<User> users = this.userService.findAll();
+        List<User> users = this.mockUserService.findAll();
         assertThat(users.size()).isEqualTo(0);
     }
 }
