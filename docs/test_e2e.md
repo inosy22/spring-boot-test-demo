@@ -19,7 +19,7 @@ Htmlベースでテストを行うことができるライブラリである。
 
 E2Eテストで利用するwebサーバーのポート番号の競合が発生しないように空いているランダムなポート番号を指定する。
 
-```diff
+```java
 // ここから
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // 空いてるポートをランダムに指定

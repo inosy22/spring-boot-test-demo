@@ -33,7 +33,7 @@ public class UserServiceTests {
 
 クラス内に簡単なテストメソッドを実装してチェックする。
 
-```
+```java
 @Test
 public void テストが動くことをテスト() throws Exception {
     Integer actual = 1 + 1;　// 実際の計算値
@@ -99,7 +99,7 @@ public void 偶数文字数のグループID生成テスト() throws Exception {
 
 以下のuserServiceクラスは、独自でインスタンス生成したため、DIコンテナのインスタンスを利用できずエラーとなる。
 
-```
+```java
 @Test
 public void メソッド単体テストDIあり失敗() throws Exception {
     UserService userService = new UserService();
@@ -120,7 +120,7 @@ Mockクラスのメソッドはデフォルトで戻り値に合わせた空の�
 
 今回の `List<User>` は空のList(0件)が返って来るような処理になる。
 
-```
+```java
 @MockBean
 UserService mockUserService;
 
@@ -137,10 +137,12 @@ public void メソッド単体テストMockBean() throws Exception {
 
 > `@MockBean` は、SpringBootの機能で利用できるアノテーションですが、テスト用モッククラス生成ライブラリのMockitoを利用している。
 > 今回の場合は、Mockitoをそのまま使った時の以下の意味と同じである。
-> ```
+> 
+> ```java
 > @InjectMocks
 > UserService mockUserService; // DIされて利用するオブジェクト
 > @Mock
 > UserMapper userMapper; // DIされるMockオブジェクト
 > ``` 
+> 
 > SpringBootだと簡単にモッククラスの宣言ができるようになってることがわかる。
