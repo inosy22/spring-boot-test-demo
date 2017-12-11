@@ -54,13 +54,6 @@ public void テストが動くことをテスト() throws Exception {
 <img width="407" alt="2017-07-25 22 28 57" src="https://user-images.githubusercontent.com/10849664/28574368-bb4e7fde-7188-11e7-9751-a8df6f40f691.png">
 
 
-# ↑ここまででテスト実装できた！！！終わり！！！簡単！！！
-
-...
-
-さすがにもう少しやります^^
-
-
 ## 3.4 グループIDを生成するメソッドのテストを作ってみる
 
 `@Test` アノテーションをつけることで、テストケースメソッドと認識されてテスト実行時に実行されるので、以下のメソッドをクラスに追加する。
@@ -95,7 +88,7 @@ public void 偶数文字数のグループID生成テスト() throws Exception {
 
 今回、userServiceのfindAllメソッドは、userMapperのインスタンスをDIコンテナから利用している。
 
-#### 3.5.1 ダメな例
+### 3.5.1 ダメな例
 
 以下のuserServiceクラスは、独自でインスタンス生成したため、DIコンテナのインスタンスを利用できずエラーとなる。
 
@@ -112,7 +105,10 @@ public void メソッド単体テストDIあり失敗() throws Exception {
 
 <img width="293" alt="2017-07-20 19 57 50" src="https://user-images.githubusercontent.com/10849664/28414520-f8509a8a-6d86-11e7-8e80-d6db4b74a1ee.png">
 
-#### 3.5.2 良い例
+
+### 3.5.2 良い例
+
+#### 3.5.2-1 インスタンスのMock化
 
 `@Autowired` でDIコンテナを利用して、UserServiceクラスを生成する。
 
@@ -154,6 +150,9 @@ public void メソッド単体テストMockBean() throws Exception {
 > 
 > SpringBootだと簡単にモッククラスの宣言ができるようになってることがわかる。
 
+
+#### 3.5.2-2 Mock化されたインスタンスメソッドの振る舞いを変更
+
 次にMock化されたインスタンスのメソッドの振る舞いを偽装してみる。
 
 `when(偽装したいインスタンスメソッド)`と`thenReturn(その戻り値)`でメソッドの振る舞いを変更することができる。
@@ -176,6 +175,10 @@ public void モックインスタンスメソッドの偽装() throws Exception 
     assertThat(users.size()).isEqualTo(mockUsers.size());
 }
 ```
+
+実行して見た
+
+<img width="288" alt="2017-12-11 12 37 17" src="https://user-images.githubusercontent.com/10849664/33814799-21037f9c-de70-11e7-8c31-e99cc78a96d6.png">
 
 `@Mock`によるインスタンスのモック化のシンプルな例を紹介したが、  
 メソッドの引数によって振る舞いを変更したり、`@Spy`による部分Mock化などMockitoには便利な機能が用意されている。  
