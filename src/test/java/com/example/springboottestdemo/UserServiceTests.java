@@ -1,7 +1,9 @@
 package com.example.springboottestdemo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -39,20 +41,37 @@ public class UserServiceTests {
     
     // Mocitoを使って素直に書くと
     // @InjectMocks
-    // UserService mockUserService; // DIされて利用するMackオブジェクト
+    // UserService userService; // DIされて利用するMackオブジェクト
     // @Mock
     // UserMapper userMapper; // DIされるMockオブジェクト
     
     // SpringBootでの書き方
     @Autowired
-    UserService mockUserService;
+    UserService userService;
     
     @MockBean
     UserMapper userMapper;
     
     @Test
     public void メソッド単体テストMockBean() throws Exception {
-        List<User> users = this.mockUserService.findAll();
+        List<User> users = this.userService.findAll();
         assertThat(users.size()).isEqualTo(0);
+    }
+    
+    // when(モックのメソッド).thenReturn(戻り値)でモックオブジェクトの振る舞いを追加する
+    @Test
+    public void モックインスタンスメソッドの偽装() throws Exception {
+        // 戻り値のデータを作成
+        List<User> mockUsers = new ArrayList<User>();
+        mockUsers.add(new User(1,"aaa",1));
+        mockUsers.add(new User(2,"bbbb",2));
+        mockUsers.add(new User(3,"ccccc",1));
+        
+        // userMapperのfindAllメソッドが呼ばれたら、mockUsersを返すようにする
+        when(this.userMapper.findAll()).thenReturn(mockUsers);
+        
+        // 偽装されたメソッドが呼ばれているかテスト
+        List<User> users = this.userService.findAll();
+        assertThat(users.size()).isEqualTo(mockUsers.size());
     }
 }
