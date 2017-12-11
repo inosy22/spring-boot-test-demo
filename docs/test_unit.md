@@ -122,18 +122,18 @@ Mockクラスのメソッドはデフォルトで戻り値に合わせた空の�
 
 今回の `List<User>` は空のList(0件)が返って来るような処理になる。
 
-(Mock化しないと、実際のDB接続処理が入ってしまうため面倒なことになる
+(Mock化しないと、実際のDB接続処理が入ってしまうため面倒なことになる)
 
 ```java
 @Autowired
-UserService mockUserService;
+UserService userService;
 
 @MockBean
 UserMapper userMapper; // UserMapperをMockにする
 
 @Test
 public void メソッド単体テストMockBean() throws Exception {
-    List<User> users = this.mockUserService.findAll(); // 空のリストが返るはず
+    List<User> users = this.userService.findAll(); // 空のリストが返るはず
     assertThat(users.size()).isEqualTo(0);
 }
 ```
@@ -147,9 +147,36 @@ public void メソッド単体テストMockBean() throws Exception {
 > 
 > ```java
 > @InjectMocks
-> UserService mockUserService; // DIされて利用するオブジェクト
+> UserService userService; // DIされて利用するオブジェクト
 > @Mock
 > UserMapper userMapper; // DIされるMockオブジェクト
 > ``` 
 > 
 > SpringBootだと簡単にモッククラスの宣言ができるようになってることがわかる。
+
+次にMock化されたインスタンスのメソッドの振る舞いを偽装してみる。
+
+`when(偽装したいインスタンスメソッド)`と`thenReturn(その戻り値)`でメソッドの振る舞いを変更することができる。
+
+```java
+// when(モックのメソッド).thenReturn(戻り値)でモックオブジェクトの振る舞いを追加する 
+@Test
+public void モックインスタンスメソッドの偽装() throws Exception {
+    // 戻り値のデータを作成
+    List<User> mockUsers = new ArrayList<User>();
+    mockUsers.add(new User(1,"aaa",1));
+    mockUsers.add(new User(2,"bbbb",2));
+    mockUsers.add(new User(3,"ccccc",1));
+
+    // userMapperのfindAllメソッドが呼ばれたら、mockUsersを返すようにする
+    when(this.userMapper.findAll()).thenReturn(mockUsers);
+    
+    // 偽装されたメソッドが呼ばれているかテスト
+    List<User> users = this.userService.findAll();
+    assertThat(users.size()).isEqualTo(mockUsers.size());
+}
+```
+
+`@Mock`によるインスタンスのモック化のシンプルな例を紹介したが、  
+メソッドの引数によって振る舞いを変更したり、`@Spy`による部分Mock化などMockitoには便利な機能が用意されている。  
+詳細な使い方はコチラ → [Mockitoチュートリアル](http://www.w3mc.com/ja/mockito/default.html)
