@@ -36,7 +36,7 @@ public class UserServiceTests {
 ```java
 @Test
 public void テストが動くことをテスト() throws Exception {
-    Integer actual = 1 + 1;　// 実際の計算値
+    Integer actual = 1 + 1; // 実際の計算値
     Integer expected = 2; // 計算した期待値
     assertThat(actual).isEqualTo(expected); // 実際の計算値と期待値があってるかチェック
 }

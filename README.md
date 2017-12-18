@@ -2,9 +2,11 @@
 
 SpringBootで作成されたwebアプリケーションに対してのテストのサンプル
 
- - [SpringBootTest入門](https://www.slideshare.net/techblogyahoo/springboottest)について、実際に実装して試してみる。
- - 45分程度のハンズオン向け資料で、UnitTestを実行できること(3章まで)をゴールとする。
- - 4,5章は余裕がある人の発展的内容。
+ - [SpringBootTest入門](https://www.slideshare.net/techblogyahoo/springboottest)について、実際に実装して試してみる
+ - 4章までで、1時間程度のハンズオン資料
+ - 5章は余裕がある人の発展的内容
+ - テスト系ライブラリをどのように使うか、どんなことに使うかに主眼を置
+ - 綺麗テストの書き方やTDD等については言及しない
 
 > ### [0.セットアップ](docs/setup.md)
 >  - このプロジェクトセットアップした際のメモなど、本リポジトリをダウンロードすれば実施の必要なし
